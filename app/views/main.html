@@ -4,10 +4,17 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
+        <meta content='gezi,direnis,guvenmek,park,benkimeguvenecegim' name='keywords' />           
+        <meta property="og:site_name" content="#benkimeguvenecegim" />
+		<meta property="og:url" content="http://www.benkimeguvenecegim.com" />
+		<meta property="og:title" content="benkimeguvenecegim" />
+		<meta property="og:image" content="@{'/public/images/favicon.png'}" />		     
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+        #{stylesheet 'bootstrap.css'/}
+        #{stylesheet 'bootstrap-responsive.css'/}
         #{get 'moreStyles' /}
         <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
-        <script src="@{'/public/javascripts/jquery-1.6.4.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>                     
         #{get 'moreScripts' /}
     </head>
     <body>
