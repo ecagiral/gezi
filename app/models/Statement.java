@@ -28,4 +28,6 @@ public class Statement extends Model {
 
     public Suser owner;
 
+    public int point;
+
 }
