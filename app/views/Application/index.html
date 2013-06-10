@@ -14,36 +14,109 @@
       <hr>
 
       <div class="jumbotron">
-        <h1>Gezi parkı direnişini destekliyorum</h1>        
-        <a class="btn btn-large btn-success" href="#">Evet</a>
-        <a class="btn btn-large btn-danger" href="#">Hayır</a>
+      			%{
+      			def p =parent;
+      			def ll =[]; 
+      			while(p!= null){
+      			 ll << p ;
+      			 p = p.parent; 	
+      			}
+      			def reverse = ll.reverse()
+      			}%
+      			#{list reverse, as:'item'}
+      				<a href="/${item.id}/0">					        		
+        			<h1>${item.st_text}</h1>      				
+        			</a>
+        			#{if !item_isLast}<i class="icon-arrow-down"></i>#{/if}   
+        		#{/list}
+        		 
+        		#{if positive==0}
+	 	 		 	<a class="btn btn-large btn-success" href="/${parent.id}/1">Evet ( ${parent.positiveChild.size()} )</a>
+        		 	<a class="btn btn-large btn-danger" href="/${parent.id}/-1">Hayır ( ${parent.negativeChild.size()} )</a>
+        		#{/if} 
+        		#{elseif positive==1}
+        		 	<i class="icon-arrow-down"></i>
+        		#{/elseif} 
+        		#{elseif positive==-1}
+        		 	<i class="icon-arrow-down"></i>
+        		#{/elseif}               
       </div>
 
     
 
       <div class="row-fluid marketing">
-        <div class="span12">
-          
-
-         <form>
- 	 		<fieldset>
-    		<legend>Çünkü</legend>    		
-    		<textarea style="width:500px;" rows="3" placeholder="fikrini belirt..."></textarea>
-    		<br>
-    		    	     
-    <button type="submit" class="btn">Gönder</button>
-  </fieldset>
-</form>
-         
+        <div class="span12">   
+        	#{if !isFirst}       
+        	
+        		#{if params.positive!="0"}
+				<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
+		 	 		<fieldset>
+		    		<legend>Çünkü</legend>    		
+		    		<textarea style="width:685px;" rows="3" placeholder="fikrini belirt..." name="text"></textarea>
+		    		<input type="hidden" name="parent" value="${parent.id}"/>
+		    		<input type="hidden" name="positive" value='${params.positive}'/>
+		    		<br>    		    	    
+		    		<button type="submit" class="btn" style="float:right">Gönder</button>
+		  			</fieldset>
+				</form>
+				#{/if}
+				
+				<h3>Diğer cevaplar:</h3>
+				
+				#{if params.positive=="1"}
+					#{list parent.positiveChild}
+					<span style="font-size:11px">
+								${_.owner.username}
+						</span>
+					<div style="clear:both;">							
+						
+						<div style="float:left;margin-right:10px">							
+							<div style="margin:2px 0 5px 0;border:1px solid #ebebeb;width:500px;height:auto;padding:5px 0px 5px 5px">
+								<span>${_.st_text}</span>
+							</div>
+						</div>						
+						
+						<div style="float:left;"">
+						    <form method="POST" action="@{Application.upvoteStatement}">
+	        		 			<input  type="hidden" name="id" value="${_.id}">  
+	        		 			<input  type="submit" class="btn btn-mini btn-info" value="Oyla">  
+        		 			</form>        		 			
+						</div>
+						
+						<div style="float:left;margin-left:10px;font-weight:bold">
+						<span>${_.point}</span>
+						</div>
+												
+						<div style="clear:left;">
+							<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
+        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+        		 		</div>
+        		 	</div>
+        		 	<br>
+					#{/list}
+				#{/if}
+				#{elseif params.positive=="-1"}
+					#{list parent.negativeChild}
+						${_.st_text}
+						${_.owner.username}
+						<a class="btn btn-large btn-success" href="/${_.id}/1">Evet</a>
+        		 		<a class="btn btn-large btn-danger" href="/${_.id}/0">Hayır</a>
+						<form method="POST" action="@{Application.upvoteStatement}">
+	        		 		<input  type="hidden" name="id" value="${_.id}">  
+	        		 		<input  type="submit" class="btn btn-large btn-danger" value="Upvote">  
+        		 		</form>        		 		
+        		 		<span>${_.point}</span>  
+        		 		<br>
+					#{/list}
+				#{/elseif}
+			#{/if}             
         </div>
-
-        
       </div>
 
-      <hr>
+      
 
       <div class="footer">
-        <p>© Company 2013</p>
+        
       </div>
 
     </div>

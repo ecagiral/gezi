@@ -1,8 +1,10 @@
 package models;
 
+import play.db.jpa.GenericModel;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,8 +15,18 @@ import javax.persistence.Entity;
  */
 
 @Entity
-public class Suser extends Model {
+public class Suser extends GenericModel {
 
+	@Id
     public String username;
+	
     public String password;
+	public Suser(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+    
+    
+    
 }

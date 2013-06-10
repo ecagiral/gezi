@@ -1,28 +1,51 @@
 package controllers;
 
-import play.*;
-import play.mvc.*;
-
-import java.util.*;
-
-import models.*;
+import models.Statement;
+import models.Suser;
+import models.Upvote;
+import play.Logger;
+import play.mvc.Controller;
 
 public class Application extends Controller {
 
-    public static void index(Statement parent,Boolean positive) {
-        render();
+    public static void index(Long id,int positive) {
+    	Statement parent;
+    	boolean isFirst = false;
+    	if(id == null ){
+    		parent = Statement.find("order by id asc").first();
+    		isFirst = true;
+    	}else{
+    		parent = Statement.findById(id);
+    	}
+        render(parent,positive,isFirst);
     }
 
-    public static void getStatements(Statement parent, boolean positive){
+    public static void addStatement(Long parent, int positive, String text){
+    	if(text.equals("")){
+    		
+    		index(parent,positive);
+    	}
+    	Statement newStatement = new Statement();
+    	Statement orig = Statement.findById(parent);
+    	newStatement.parent = orig;
+    	newStatement.positive = positive == 1 ? Boolean.TRUE : Boolean.FALSE;
+    	newStatement.st_text = text;
+    	newStatement.owner = Suser.findById("admin");
+    	newStatement.save();
         index(parent,positive);
     }
 
-    public static void addStatement(Statement parent, boolean positive, String text){
-        index(parent,positive);
-    }
-
-    public void upvoteStatement(Statement state){
-        index(state.parent,state.positive);
+    public static void upvoteStatement(Long id){
+    	Statement s = Statement.findById(id);
+    	Suser user = Suser.findById("admin");
+    	Upvote upvote = Upvote.find("suser = ? and statement = ?",user,s ).first();
+    	if(upvote == null){
+    		new Upvote(user,s).save();    		
+    	}
+    	long count = upvote.count("statement=?",s);
+    	s.point =(int)count;
+    	s.save();
+        index(s.parent.id,s.positive ? 1 : -1);
     }
 
 }
