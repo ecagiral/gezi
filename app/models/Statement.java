@@ -2,6 +2,7 @@ package models;
 
 import play.db.jpa.Model;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 /**
@@ -11,16 +12,22 @@ import java.util.List;
  * Time: 14:21
  * To change this template use File | Settings | File Templates.
  */
+
+@Entity
 public class Statement extends Model {
 
-    Statement parent;
+    public Statement parent;
 
-    Boolean positive;
+    public Boolean positive;
 
-    String text;
+    public String text;
 
     public List<Statement> positiveChild;
 
     public List<Statement> negativeChild;
+
+    public Suser owner;
+
+    public int point;
 
 }
