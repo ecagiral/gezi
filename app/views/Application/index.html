@@ -5,10 +5,20 @@
 
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="#">Giriş</a></li>
+        #{if !connected}
+          <li class="active"><a href="/login">Giriş</a></li>
+          <li><a href="/signup">Üye Ol</a></li>          
+        #{/if}
+        
           <li><a href="#">Nedir?</a></li>
+        
+        #{else}
+          <li style="margin:7px -7px 0 0">          
+          	${connected?.username}<a style="color:red;padding-left:4px;display:inline;background:white" href="/logout">(Çıkış)</a>
+          </li>          
+        #{/else}          
         </ul>
-        <h3 class="muted">#ProjectName</h3>
+        <a href="/" style="text-decoration:none;"><h3 class="muted">#projectname</h3></a>        
       </div>
 
       <hr>
@@ -31,8 +41,8 @@
         		#{/list}
         		 
         		#{if positive==0}
-	 	 		 	<a class="btn btn-large btn-success" href="/${parent.id}/1">Evet ( ${parent.positiveChild.size()} )</a>
-        		 	<a class="btn btn-large btn-danger" href="/${parent.id}/-1">Hayır ( ${parent.negativeChild.size()} )</a>
+	 	 		 	<a class="btn btn-large btn-success" href="/${parent.id}/1">Katılıyorum ( ${parent.positiveChild.size()} )</a>
+        		 	<a class="btn btn-large btn-danger" href="/${parent.id}/-1">Katılmıyorum ( ${parent.negativeChild.size()} )</a>
         		#{/if} 
         		#{elseif positive==1}
         		 	<i class="icon-arrow-down"></i>
@@ -41,7 +51,6 @@
         		 	<i class="icon-arrow-down"></i>
         		#{/elseif}               
       </div>
-
     
 
       <div class="row-fluid marketing">
@@ -59,15 +68,16 @@
 		    		<button type="submit" class="btn" style="float:right">Gönder</button>
 		  			</fieldset>
 				</form>
+				<h3>Diğer cevaplar:</h3>
 				#{/if}
 				
-				<h3>Diğer cevaplar:</h3>
+				
 				
 				#{if params.positive=="1"}
 					#{list parent.positiveChild}
 					<span style="font-size:11px">
-								${_.owner.username}
-						</span>
+						${_.owner.username}
+					</span>
 					<div style="clear:both;">							
 						
 						<div style="float:left;margin-right:10px">							
@@ -76,15 +86,16 @@
 							</div>
 						</div>						
 						
-						<div style="float:left;"">
+						<div style="float:left;position:relative;top:2px">
 						    <form method="POST" action="@{Application.upvoteStatement}">
 	        		 			<input  type="hidden" name="id" value="${_.id}">  
-	        		 			<input  type="submit" class="btn btn-mini btn-info" value="Oyla">  
+	        		 			<input  type="submit" class="btn btn-mini btn-info" value="&nbsp;&nbsp;&nbsp;Oyla" />
+	        		 			<i class="icon-arrow-up upvote"></i>
         		 			</form>        		 			
 						</div>
 						
-						<div style="float:left;margin-left:10px;font-weight:bold">
-						<span>${_.point}</span>
+						<div style="float:left;margin-left:10px;font-weight:bold;margin-top:2px;color:gray">
+							<span>${_.point}</span>
 						</div>
 												
 						<div style="clear:left;">
@@ -94,6 +105,9 @@
         		 	</div>
         		 	<br>
 					#{/list}
+					#{else}
+						Henüz bir cevap girilmemiş
+					#{/else}
 				#{/if}
 				#{elseif params.positive=="-1"}
 					#{list parent.negativeChild}
@@ -108,15 +122,13 @@
         		 		<span>${_.point}</span>  
         		 		<br>
 					#{/list}
+					#{else}
+						Henüz bir cevap girilmemiş
+					#{/else}
 				#{/elseif}
 			#{/if}             
         </div>
       </div>
 
-      
-
-      <div class="footer">
-        
-      </div>
-
-    </div>
+      <div class="footer"></div>
+</div>

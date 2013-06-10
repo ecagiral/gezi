@@ -4,6 +4,9 @@ import models.Statement;
 import models.Suser;
 import models.Upvote;
 import play.Logger;
+import play.cache.Cache;
+import play.libs.Codec;
+import play.libs.Images;
 import play.mvc.Controller;
 
 public class Application extends Controller {
@@ -17,7 +20,8 @@ public class Application extends Controller {
     	}else{
     		parent = Statement.findById(id);
     	}
-        render(parent,positive,isFirst);
+    	Suser connected = Auth.connectedUser();
+        render(parent,positive,isFirst,connected);
     }
 
     public static void addStatement(Long parent, int positive, String text){
@@ -46,6 +50,27 @@ public class Application extends Controller {
     	s.point =(int)count;
     	s.save();
         index(s.parent.id,s.positive ? 1 : -1);
+    }
+    
+    public static void captcha(String id) {
+        Images.Captcha captcha = Images.captcha();
+        String code = captcha.getText("#424449");
+        Cache.set(id, code, "10mn");
+        renderBinary(captcha);
+    }
+    
+    public static void login(){
+    	render();
+    }
+    
+    public static void signup(){
+    	String randomID = Codec.UUID();
+    	render(randomID);
+    }
+    
+    public static void logout() {              
+        session.clear();
+        index(null,0);
     }
 
 }

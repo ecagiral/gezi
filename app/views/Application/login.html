@@ -1,0 +1,18 @@
+#{extends 'main.html' /}
+#{set title:'Giriş Yap' /}
+	
+<div style="padding:10px">
+		#{if flash?.error}
+			<div style="width:200px;heigt:auto;background:red;text-align:center;margin-bottom:10px">
+				${flash.error}
+			</div>
+		#{/if}
+	<form class="formLayout" action="@{Auth.authenticate}" method="POST" accept-charset="${_response_encoding}">
+		 <label id="title">Giriş Yap</label><br>
+		 <label>Kullanıcı Adı</label>
+         <input type="text" name="userName" size="19" value="${flash.userName}" id="email" /> &nbsp;#{error 'userName' /}<br>
+         <label>Şifre</label>
+         <input type="password" name="password" size="19" value="" id="password" /> &nbsp;#{error 'password' /}<br>         
+		 <input type="submit" value="Giriş" />     
+	</form>	
+</div>

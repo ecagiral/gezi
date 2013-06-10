@@ -10,10 +10,13 @@ public class Startup extends Job {
 
 	@Override
 	public void doJob() throws Exception {		
-		Suser suser = new Suser("admin","12345").save();
-		Statement s = new Statement();
-		s.owner = suser;
-		s.st_text = "Gezi parkı direnişini destekliyorum";
-		s.save();
+		Suser suser = Suser.findById("admin");
+		if(suser == null){
+			suser = new Suser("admin","12345").save();
+			Statement s = new Statement();
+			s.owner = suser;
+			s.st_text = "Gezi parkı direnişini destekliyorum";
+			s.save();
+		}		
 	}
 }
