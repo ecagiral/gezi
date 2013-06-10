@@ -13,11 +13,11 @@ import java.util.List;
  */
 public class Statement extends Model {
 
-    Statement parent;
+    public Statement parent;
 
-    Boolean positive;
+    public Boolean positive;
 
-    String text;
+    public String text;
 
     public List<Statement> positiveChild;
 
