@@ -9,18 +9,18 @@
 	#{/if}
 	
 	<div class="container" style="margin-top:80px">
-	<form class="form-signin"action="@{Auth.register}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
-	  <h2 class="form-signin-heading" style="padding-bottom:10px">Üye Ol</h2>
-	  <input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="username" size="19" value="${flash.username}" id="username" /> &nbsp;#{error 'username' /}<br>
-	  <input type="password" placeholder="Şifre" class="input-block-level"  size="19" name="password" value="${flash.password}" id="password" /> &nbsp;#{error 'password' /}<br>	  
-	  <div style="background:white;width:150px;height:40px">
-	  	<img style="float:left;display:block;clar:both " src="@{Application.captcha(randomID)}" />
-	  </div>
-	  <br>
-	  <label>Robot olmadığını kanıtla</label>
-  	  <input type="text" name="code" id="code" size="18" value="" /> &nbsp;#{error 'code' /}<br>
-  	  <input type="hidden" name="randomID" value="${randomID}" />
-	  <button style="color:black" class="btn btn-large btn-warning" type="submit">Üye ol</button>
-	</form>
+		<form class="form-signin"action="@{Auth.register}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
+		  <h2 class="form-signin-heading" style="padding-bottom:10px">Üye Ol</h2>
+		  <input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="username" size="19" value="${flash.username}" id="username" /> &nbsp;#{error 'username' /}<br>
+		  <input type="password" placeholder="Şifre" class="input-block-level"  size="19" name="password" value="${flash.password}" id="password" /> &nbsp;#{error 'password' /}<br>	  
+		  <div style="background:white;width:150px;height:40px">
+		  	<img style="float:left;display:block;clar:both " src="@{Application.captcha(randomID)}" />
+		  </div>
+		  <br>
+		  <label>Robot olmadığını kanıtla</label>
+	  	  <input type="text" name="code" id="code" size="18" value="" /> &nbsp;#{error 'code' /}<br>
+	  	  <input type="hidden" name="randomID" value="${randomID}" />
+		  <button style="color:black" class="btn btn-large btn-warning" type="submit">Üye ol</button>
+		</form>
 	</div>		
 </div>

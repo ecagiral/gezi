@@ -2,16 +2,13 @@
 #{set title:'#serbestsandik' /}
 
 <div class="container-narrow">
-
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
         #{if !connected}
           <li class="active"><a href="/login">Giriş</a></li>
           <li><a href="/signup">Üye Ol</a></li>          
-        #{/if}
-        
-          <li><a href="/nedir">Nedir?</a></li>
-        
+        #{/if}        
+          <li><a href="/nedir">Nedir?</a></li>        
         #{else}
           <li style="margin:7px -7px 0 0">          
           	${connected?.username}<a style="color:red;padding-left:4px;display:inline;background:white" href="/logout">(Çıkış)</a>
@@ -20,9 +17,7 @@
         </ul>
         <a href="/" style="text-decoration:none;"><h3 class="muted">#serbestsandik</h3></a>        
       </div>
-
       <hr>
-
       <div class="jumbotron">
       			%{
       			def p =parent;
@@ -52,58 +47,54 @@
         		#{/elseif}               
       </div>
     
-
       <div class="row-fluid marketing">
         <div class="span12">   
         	#{if !isFirst}       
-        	
         		#{if params.positive!="0"}
-				<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
-		 	 		<fieldset>
-		    		<legend>Çünkü</legend>    		
-		    		<textarea style="width:685px;" rows="3" placeholder="fikrini belirt..." name="text"></textarea>
-		    		<input type="hidden" name="parent" value="${parent.id}"/>
-		    		<input type="hidden" name="positive" value='${params.positive}'/>
-		    		<br>    		    	    
-		    		<button type="submit" class="btn" style="float:right">Gönder</button>
-		  			</fieldset>
-				</form>
-				<h3>Diğer cevaplar:</h3>
+					<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
+			 	 		<fieldset>
+			    		<legend>Çünkü</legend>    		
+			    		<textarea style="width:685px;" rows="3" placeholder="fikrini belirt..." name="text"></textarea>
+			    		<input type="hidden" name="parent" value="${parent.id}"/>
+			    		<input type="hidden" name="positive" value='${params.positive}'/>
+			    		<br>    		    	    
+			    		<button type="submit" class="btn" style="float:right">Gönder</button>
+			  			</fieldset>
+					</form>
+					<h3>Diğer cevaplar:</h3>
 				#{/if}
-				
-				
-				
+							
 				#{if params.positive=="1"}
 					#{list parent.positiveChild}
-					<span style="font-size:11px">
-						${_.owner.username}
-					</span>
-					<div style="clear:both;">							
-						
-						<div style="float:left;margin-right:10px">							
-							<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
-								<span style="font-size:11px;">${_.st_text.raw()}</span>
+						<span style="font-size:11px">
+							${_.owner.username}
+						</span>
+						<div style="clear:both;">							
+							
+							<div style="float:left;margin-right:10px">							
+								<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
+									<span style="font-size:11px;">${_.st_text.raw()}</span>
+								</div>
+							</div>						
+							
+							<div style="float:left;position:relative;top:2px">
+							    <form method="POST" action="@{Application.upvoteStatement}">
+		        		 			<input  type="hidden" name="id" value="${_.id}">  
+		        		 			<input  type="submit" class="btn btn-mini btn-info" value="&nbsp;&nbsp;&nbsp;Oyla" />
+		        		 			<i class="icon-arrow-up upvote"></i>
+	        		 			</form>        		 			
 							</div>
-						</div>						
-						
-						<div style="float:left;position:relative;top:2px">
-						    <form method="POST" action="@{Application.upvoteStatement}">
-	        		 			<input  type="hidden" name="id" value="${_.id}">  
-	        		 			<input  type="submit" class="btn btn-mini btn-info" value="&nbsp;&nbsp;&nbsp;Oyla" />
-	        		 			<i class="icon-arrow-up upvote"></i>
-        		 			</form>        		 			
-						</div>
-						
-						<div style="float:left;margin-left:10px;font-weight:bold;margin-top:2px;color:gray">
-							<span>${_.point}</span>
-						</div>
-												
-						<div style="clear:left;">
-							<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
-        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
-        		 		</div>
-        		 	</div>
-        		 	<br>
+							
+							<div style="float:left;margin-left:10px;font-weight:bold;margin-top:2px;color:gray">
+								<span>${_.point}</span>
+							</div>
+													
+							<div style="clear:left;">
+								<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
+	        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+	        		 		</div>
+	        		 	</div>
+	        		 	<br>
 					#{/list}
 					#{else}
 						Henüz bir cevap girilmemiş
@@ -112,34 +103,35 @@
 				#{elseif params.positive=="-1"}
 					#{list parent.negativeChild}
 						<span style="font-size:11px">
-						${_.owner.username}
-					</span>
-					<div style="clear:both;">							
+							${_.owner.username}
+						</span>
 						
-						<div style="float:left;margin-right:10px">							
-							<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
-								<span style="font-size:11px;">${_.st_text.raw()}</span>
+						<div style="clear:both;">							
+						
+							<div style="float:left;margin-right:10px">							
+								<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
+									<span style="font-size:11px;">${_.st_text.raw()}</span>
+								</div>
+							</div>						
+						
+							<div style="float:left;position:relative;top:2px">
+							    <form method="POST" action="@{Application.upvoteStatement}">
+		        		 			<input  type="hidden" name="id" value="${_.id}">  
+		        		 			<input  type="submit" class="btn btn-mini btn-info" value="&nbsp;&nbsp;&nbsp;Oyla" />
+		        		 			<i class="icon-arrow-up upvote"></i>
+	        		 			</form>        		 			
 							</div>
-						</div>						
 						
-						<div style="float:left;position:relative;top:2px">
-						    <form method="POST" action="@{Application.upvoteStatement}">
-	        		 			<input  type="hidden" name="id" value="${_.id}">  
-	        		 			<input  type="submit" class="btn btn-mini btn-info" value="&nbsp;&nbsp;&nbsp;Oyla" />
-	        		 			<i class="icon-arrow-up upvote"></i>
-        		 			</form>        		 			
-						</div>
-						
-						<div style="float:left;margin-left:10px;font-weight:bold;margin-top:2px;color:gray">
-							<span>${_.point}</span>
-						</div>
+							<div style="float:left;margin-left:10px;font-weight:bold;margin-top:2px;color:gray">
+								<span>${_.point}</span>
+							</div>
 												
-						<div style="clear:left;">
-							<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
-        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+							<div style="clear:left;">
+								<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
+	        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+	        		 		</div>
         		 		</div>
-        		 	</div>
-        		 	<br>
+        		 		<br>
 					#{/list}
 					#{else}
 						Henüz bir cevap girilmemiş
@@ -148,6 +140,5 @@
 			#{/if}             
         </div>
       </div>
-
       <div class="footer"></div>
 </div>
