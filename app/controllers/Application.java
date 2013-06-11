@@ -12,7 +12,7 @@ import play.mvc.Controller;
 public class Application extends Controller {
 
     public static void index(Long id,int positive) {
-    	Statement parent;
+        Statement parent;
     	boolean isFirst = false;
     	if(id == null ){
     		parent = Statement.find("order by id asc").first();
@@ -25,8 +25,15 @@ public class Application extends Controller {
     }
 
     public static void addStatement(Long parent, int positive, String text){
-    	if(text.equals("")){
-    		
+    	Suser suser = Auth.connectedUser();
+        if(suser == null){
+            flash.put("action","addStatement");
+            flash.put("parent",parent);
+            flash.put("positive",positive);
+            flash.put("text",text);
+            login();
+        }
+        if(text.equals("")){
     		index(parent,positive);
     	}
     	Statement newStatement = new Statement();
@@ -60,6 +67,7 @@ public class Application extends Controller {
     }
     
     public static void login(){
+        flash.keep();
     	render();
     }
     
