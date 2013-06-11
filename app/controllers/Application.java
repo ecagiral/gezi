@@ -1,3 +1,4 @@
+
 package controllers;
 
 import models.Statement;
@@ -25,15 +26,15 @@ public class Application extends Controller {
     }
 
     public static void addStatement(Long parent, int positive, String text){
-    	if(text.equals("")){
-    		
+    	if(text.equals("")){    		
     		index(parent,positive);
     	}
     	Statement newStatement = new Statement();
     	Statement orig = Statement.findById(parent);
     	newStatement.parent = orig;
     	newStatement.positive = positive == 1 ? Boolean.TRUE : Boolean.FALSE;
-    	newStatement.st_text = text;
+    	String replacedText = text.replace("\r\n", "<br>");
+    	newStatement.st_text = replacedText;
     	newStatement.owner = Suser.findById("admin");
     	newStatement.save();
         index(parent,positive);

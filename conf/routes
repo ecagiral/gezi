@@ -13,6 +13,7 @@ GET     /{id}/{positive} 				   Application.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
+GET     /nedir                                  staticFile:public/html/nedir.html
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public

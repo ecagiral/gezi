@@ -10,7 +10,7 @@
           <li><a href="/signup">Üye Ol</a></li>          
         #{/if}
         
-          <li><a href="#">Nedir?</a></li>
+          <li><a href="/nedir">Nedir?</a></li>
         
         #{else}
           <li style="margin:7px -7px 0 0">          
@@ -18,7 +18,7 @@
           </li>          
         #{/else}          
         </ul>
-        <a href="/" style="text-decoration:none;"><h3 class="muted">#projectname</h3></a>        
+        <a href="/" style="text-decoration:none;"><h3 class="muted">#serbestsandik</h3></a>        
       </div>
 
       <hr>
@@ -81,8 +81,8 @@
 					<div style="clear:both;">							
 						
 						<div style="float:left;margin-right:10px">							
-							<div style="margin:2px 0 5px 0;border:1px solid #ebebeb;width:500px;height:auto;padding:5px 0px 5px 5px">
-								<span>${_.st_text}</span>
+							<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
+								<span style="font-size:11px;">${_.st_text.raw()}</span>
 							</div>
 						</div>						
 						
@@ -111,16 +111,35 @@
 				#{/if}
 				#{elseif params.positive=="-1"}
 					#{list parent.negativeChild}
-						${_.st_text}
+						<span style="font-size:11px">
 						${_.owner.username}
-						<a class="btn btn-large btn-success" href="/${_.id}/1">Evet</a>
-        		 		<a class="btn btn-large btn-danger" href="/${_.id}/0">Hayır</a>
-						<form method="POST" action="@{Application.upvoteStatement}">
-	        		 		<input  type="hidden" name="id" value="${_.id}">  
-	        		 		<input  type="submit" class="btn btn-large btn-danger" value="Upvote">  
-        		 		</form>        		 		
-        		 		<span>${_.point}</span>  
-        		 		<br>
+					</span>
+					<div style="clear:both;">							
+						
+						<div style="float:left;margin-right:10px">							
+							<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
+								<span style="font-size:11px;">${_.st_text.raw()}</span>
+							</div>
+						</div>						
+						
+						<div style="float:left;position:relative;top:2px">
+						    <form method="POST" action="@{Application.upvoteStatement}">
+	        		 			<input  type="hidden" name="id" value="${_.id}">  
+	        		 			<input  type="submit" class="btn btn-mini btn-info" value="&nbsp;&nbsp;&nbsp;Oyla" />
+	        		 			<i class="icon-arrow-up upvote"></i>
+        		 			</form>        		 			
+						</div>
+						
+						<div style="float:left;margin-left:10px;font-weight:bold;margin-top:2px;color:gray">
+							<span>${_.point}</span>
+						</div>
+												
+						<div style="clear:left;">
+							<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
+        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+        		 		</div>
+        		 	</div>
+        		 	<br>
 					#{/list}
 					#{else}
 						Henüz bir cevap girilmemiş
