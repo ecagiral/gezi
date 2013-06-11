@@ -2,6 +2,7 @@
 package controllers;
 
 import models.Statement;
+
 import models.Suser;
 import models.Upvote;
 import play.Logger;
@@ -9,7 +10,9 @@ import play.cache.Cache;
 import play.libs.Codec;
 import play.libs.Images;
 import play.mvc.Controller;
+import play.mvc.With;
 
+@With(Auth.class)
 public class Application extends Controller {
 
     public static void index(Long id,int positive) {
@@ -21,8 +24,7 @@ public class Application extends Controller {
     	}else{
     		parent = Statement.findById(id);
     	}
-    	Suser connected = Auth.connectedUser();
-        render(parent,positive,isFirst,connected);
+        render(parent,positive,isFirst);
     }
 
     public static void addStatement(Long parent, int positive, String text){
