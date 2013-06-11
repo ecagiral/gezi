@@ -1,19 +1,25 @@
 #{extends 'main.html' /}
 #{set title:'Giriş Yap' /}
 
-<div style="width:700px;margin:0 auto">
+<div style="width:730px;margin:0 auto;padding-top:20px">
 	#{if flash?.error}
-		<div style="margin:0 auto;width:200px;heigt:auto;background:red;text-align:center;margin-bottom:10px">
+		<div class="alert alert-success" style="background:red;font-size:12px !important;height:20px !important;margin:0 auto;width:250px;color:white;text-align:center;border:1px solid white">	
 			${flash.error}
 		</div>
 	#{/if}
-	<div class="signUpBoxContainer" style="padding:10px;float:left">
+	
+	<div class="masthead">    
+        	<a href="/" style="text-decoration:none;"><h3 class="muted">#serbestsandik</h3></a>        
+      	</div>
+      	<hr>
+      	
+	<div class="signUpBoxContainer" style="padding:10px;float:left">			
 		<div style="margin-top:80px">
 			<form class="form-signin" action="@{Auth.register}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
 			  <h2 class="form-signin-heading" style="padding-bottom:10px">Üye Ol</h2>
 			  <input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="username" size="19" value="${flash.username}" id="username" /> &nbsp;#{error 'username' /}<br>
 			  <input type="password" placeholder="Şifre" class="input-block-level"  size="19" name="password" value="${flash.password}" id="password" /> &nbsp;#{error 'password' /}<br>	  
-			  <div style="background:white;width:150px;height:40px">
+			  <div style="background:white;width:150px;height:45px">
 			  	<img style="float:left;display:block;clar:both " src="@{Application.captcha(randomID)}" />
 			  </div>
 			  <br>
@@ -33,13 +39,16 @@
 	<div class="loginBoxContainer" style="margin-top:70px;float:left">
 		<form class="form-signin" action="@{Auth.authenticate}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
 			<h2 class="form-signin-heading" style="padding-bottom:10px">Giriş Yap</h2>
-			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userName" size="19" value="${flash.userName}" id="email" /> &nbsp;#{error 'userName' /} 
+			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userName" size="19" value="${flash.userName}" id="email" /> &nbsp;#{error 'userName' /}
 			<input type="password" placeholder="Şifre" class="input-block-level" name="password" size="19" value="" id="password" /> &nbsp;#{error 'password' /}
 			<input type="hidden" name="method" value="&{flash.method}"/>
             <input type="hidden" name="param1" value="&{flash.param1}"/>
             <input type="hidden" name="param2" value="&{flash.param2}"/>
             <input type="hidden" name="param3" value="&{flash.param3}"/>
             <br>
+			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userNameLogin" size="19" value="${flash.userNameLogin}" id="email" /> &nbsp;#{error 'userNameLogin' /} 
+			<input type="password" placeholder="Şifre" class="input-block-level" name="passwordLogin" size="19" value="" id="password" /> &nbsp;#{error 'passwordLogin' /}
+			<br>
 			<button style="color:black" class="btn btn-large btn-warning" type="submit">Giriş</button>
 		</form>
 	</div>

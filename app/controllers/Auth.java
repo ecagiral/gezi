@@ -24,12 +24,12 @@ public class Auth extends Controller{
 		String userId = session.get("logged");
 		return (userId == null) ? null : (Suser) Suser.findById(userId);
 	}
-    
-    public static void authenticate(@Required String userName, @Required String password, String method, String param1, String param2, String param3) {
-        Suser user = Suser.findByUsername(userName);
-        if (user == null || !user.checkPassword(password)) {
+
+    public static void authenticate(@Required String userNameLogin, @Required String passwordLogin, String method, String param1, String param2, String param3) {
+        Suser user = Suser.findByUsername(userNameLogin);
+        if (user == null || !user.checkPassword(passwordLogin)) {
         	flash.error("Tüm alanları doğru doldurunuz");
-            flash.put("username", userName);
+            flash.put("username", userNameLogin);
             validation.keep();
             params.flash();
             Application.login();

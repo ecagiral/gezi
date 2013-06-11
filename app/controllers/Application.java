@@ -1,6 +1,8 @@
 
 package controllers;
 
+import java.util.Date;
+
 import models.Statement;
 
 import models.Suser;
@@ -46,7 +48,9 @@ public class Application extends Controller {
     	String replacedText = text.replace("\r\n", "<br>");
     	newStatement.st_text = replacedText;
     	newStatement.owner = suser;
+    	newStatement.entryDate = new Date();
     	newStatement.save();
+    	flash.put("successMessage","Gönderildi");
         index(parent,positive);
     }
 
