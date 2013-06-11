@@ -53,7 +53,14 @@
         		#{if params.positive!="0"}
 					<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
 			 	 		<fieldset>
-			    		<legend>Çünkü</legend>    		
+			    		<legend>
+			    		#{if params.positive=="1"}
+			    			Katılıyorum dedin
+			    		#{/if}
+			    		#{else}
+			    			Katılmıyorum dedin
+			    		#{/else}
+			    		çünkü</legend>    		
 			    		<textarea style="width:685px;" rows="3" placeholder="fikrini belirt..." name="text"></textarea>
 			    		<input type="hidden" name="parent" value="${parent.id}"/>
 			    		<input type="hidden" name="positive" value='${params.positive}'/>
@@ -91,7 +98,7 @@
 													
 							<div style="clear:left;">
 								<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
-	        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+	        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/-1">Katılmıyorum</a>
 	        		 		</div>
 	        		 	</div>
 	        		 	<br>
@@ -128,7 +135,7 @@
 												
 							<div style="clear:left;">
 								<a class="btn btn-mini btn-success" href="/${_.id}/1">Katılıyorum</a>
-	        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/0">Katılmıyorum</a>
+	        		 			<a class="btn btn-mini btn-danger" href="/${_.id}/-1">Katılmıyorum</a>
 	        		 		</div>
         		 		</div>
         		 		<br>
