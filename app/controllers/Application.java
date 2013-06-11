@@ -63,12 +63,9 @@ public class Application extends Controller {
     }
     
     public static void login(){
-    	render();
-    }
-    
-    public static void signup(){
     	String randomID = Codec.UUID();
     	render(randomID);
+    	render();
     }
     
     public static void logout() {              

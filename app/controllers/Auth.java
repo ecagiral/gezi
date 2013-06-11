@@ -53,7 +53,7 @@ public class Auth extends Controller{
         	validation.keep();
             params.flash();
             flash.error("Tüm alanları doğru doldurunuz");
-            Application.signup();
+            Application.login();
         }
        
         Suser user = new Suser(username, password);
