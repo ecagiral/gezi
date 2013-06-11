@@ -4,10 +4,11 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
-        <meta content='gezi,direnis,guvenmek,park,benkimeguvenecegim' name='keywords' />           
-        <meta property="og:site_name" content="#benkimeguvenecegim" />
-		<meta property="og:url" content="http://www.benkimeguvenecegim.com" />
-		<meta property="og:title" content="benkimeguvenecegim" />
+        <meta name="description" content="serbest sandik,gorus bildir,platform,oylama" />
+        <meta content='serbest sandik,gorus bildir,platform,oylama' name='keywords' />           
+        <meta property="og:site_name" content="#serbestsandik" />
+		<meta property="og:url" content="http://www.serbestsandik.com" />
+		<meta property="og:title" content="serbestsandik" />
 		<meta property="og:image" content="@{'/public/images/favicon.png'}" />		     
         <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -19,13 +20,6 @@
         #{get 'moreScripts' /}
     </head>
     <body>
-    
-        <!-- Login Modal Body -->
-		<div class="modal hide loginModalBox" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-body" id="loginModalBody">
-				#{login /}
-			</div>
-		</div>
 		
         #{doLayout /}
     </body>

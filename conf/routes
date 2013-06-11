@@ -2,7 +2,7 @@
 # This file defines all application routes (Higher priority routes first)
 # ~~~~
 
-GET     / 								   Application.index
+
 GET     /captcha                           Application.captcha
 GET     /login                             Application.login
 GET     /signup                            Application.signup
@@ -10,10 +10,12 @@ POST    /upvoteStatement                   Application.upvoteStatement
 *       /addStatement                         Application.addStatement
 GET     /logout                            Application.logout
 # Home page
+GET     / 								   Application.index
 GET     /{id}/{positive} 				   Application.index
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
+GET     /nedir                                  staticFile:public/html/nedir.html
 
 # Map static resources from the /app/public folder to the /public path
 GET     /public/                                staticDir:public
