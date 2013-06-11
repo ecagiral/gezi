@@ -6,7 +6,7 @@
 GET     /captcha                           Application.captcha
 GET     /login                             Application.login
 GET     /signup                            Application.signup
-POST    /upvoteStatement                   Application.upvoteStatement
+*    /upvoteStatement                   Application.upvoteStatement
 *       /addStatement                         Application.addStatement
 GET     /logout                            Application.logout
 # Home page

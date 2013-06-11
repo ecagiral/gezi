@@ -40,6 +40,9 @@ public class Auth extends Controller{
             if(action.equals("addStatement")){
                 Application.addStatement(Long.parseLong(flash.get("parent")),Integer.parseInt(flash.get("positive")),flash.get("text"));
             }
+            if(action.equals("upvoteStatement")){
+                Application.upvoteStatement(Long.parseLong(flash.get("parent")));
+            }
         }
         Application.index(null,0);
     }

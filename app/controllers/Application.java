@@ -51,6 +51,12 @@ public class Application extends Controller {
     }
 
     public static void upvoteStatement(Long id){
+        Suser suser = Auth.connectedUser();
+        if(suser == null){
+            flash.put("action","upvoteStatement");
+            flash.put("parent",id);
+            login();
+        }
     	Statement s = Statement.findById(id);
     	Suser user = Suser.findById("admin");
     	Upvote upvote = Upvote.find("suser = ? and statement = ?",user,s ).first();
