@@ -1,5 +1,7 @@
 package jobs;
 
+import java.util.Date;
+
 import models.Statement;
 import models.Suser;
 import play.jobs.Job;
@@ -16,6 +18,7 @@ public class Startup extends Job {
 			Statement s = new Statement();
 			s.owner = suser;
 			s.st_text = "Gezi parkı direnişini destekliyorum";
+			s.entryDate = new Date();
 			s.save();
 		}		
 	}

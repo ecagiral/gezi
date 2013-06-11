@@ -1,7 +1,7 @@
 #{extends 'main.html' /}
 #{set title:'Giriş Yap' /}
 
-<div style="width:700px;margin:0 auto">
+<div style="width:730px;margin:0 auto">
 	#{if flash?.error}
 		<div style="margin:0 auto;width:200px;heigt:auto;background:red;text-align:center;margin-bottom:10px">
 			${flash.error}
@@ -14,7 +14,7 @@
 			  <h2 class="form-signin-heading" style="padding-bottom:10px">Üye Ol</h2>
 			  <input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="username" size="19" value="${flash.username}" id="username" /> &nbsp;#{error 'username' /}<br>
 			  <input type="password" placeholder="Şifre" class="input-block-level"  size="19" name="password" value="${flash.password}" id="password" /> &nbsp;#{error 'password' /}<br>	  
-			  <div style="background:white;width:150px;height:40px">
+			  <div style="background:white;width:150px;height:45px">
 			  	<img style="float:left;display:block;clar:both " src="@{Application.captcha(randomID)}" />
 			  </div>
 			  <br>

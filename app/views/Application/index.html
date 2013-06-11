@@ -1,12 +1,17 @@
 #{extends 'main.html' /}
 #{set title:'#serbestsandik' /}
 
+#{if flash.successMessage}	
+	<div class="alert alert-success" style="background:green;font-size:12px !important;height:20px !important;margin:0 auto;width:250px;color:white;text-align:center;border:1px solid white">	
+		${flash.successMessage}
+	</div>
+#{/if}
+	
 <div class="container-narrow">
       <div class="masthead">
         <ul class="nav nav-pills pull-right">
         #{if !connected}
-          <li class="active"><a href="/login">Giriş</a></li>
-          <li><a href="/login">Üye Ol</a></li>          
+          <li class="active"><a href="/login">Giriş / Üye Ol</a></li>
         #{/if}        
           <li><a href="/nedir">Nedir?</a></li>        
         #{else}
@@ -36,8 +41,8 @@
         		#{/list}
         		 
         		#{if positive==0}
-	 	 		 	<a class="btn btn-large btn-success" href="/${parent.id}/1">Katılıyorum ( ${parent.positiveChild.size()} )</a>
-        		 	<a class="btn btn-large btn-danger" href="/${parent.id}/-1">Katılmıyorum ( ${parent.negativeChild.size()} )</a>
+	 	 		 	<a class="btn btn-large btn-success" href="/${parent.id}/1">Katılanları gör ( ${parent.positiveChild.size()} )</a>
+        		 	<a class="btn btn-large btn-danger" href="/${parent.id}/-1">Katılmayanları gör ( ${parent.negativeChild.size()} )</a>
         		#{/if} 
         		#{elseif positive==1}
         		 	<i class="icon-arrow-down"></i>
@@ -52,29 +57,35 @@
         	#{if !isFirst}       
         		#{if params.positive!="0"}
 					<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
-			 	 		<fieldset>
-			    		<legend>
-			    		#{if params.positive=="1"}
-			    			Katılıyorum dedin
+			 	 		<fieldset>  
+			 	 		#{if params.positive=="1"} 		
+			    			<textarea style="width:685px;" rows="3" placeholder="Katılıyorum çünkü..." name="text"></textarea>
 			    		#{/if}
-			    		#{else}
-			    			Katılmıyorum dedin
-			    		#{/else}
-			    		çünkü</legend>    		
-			    		<textarea style="width:685px;" rows="3" placeholder="fikrini belirt..." name="text"></textarea>
+			    		#{elseif params.positive=="-1"}
+			    			<textarea style="width:685px;" rows="3" placeholder="Katılmıyorum çünkü..." name="text"></textarea>			    		
+			    		#{/elseif}
 			    		<input type="hidden" name="parent" value="${parent.id}"/>
 			    		<input type="hidden" name="positive" value='${params.positive}'/>
 			    		<br>    		    	    
 			    		<button type="submit" class="btn" style="float:right">Gönder</button>
 			  			</fieldset>
-					</form>
-					<h3>Diğer cevaplar:</h3>
+					</form>					
 				#{/if}
+				
+				#{if params.positive=="1"}
+						<h3>Diğer katılanların fikirleri:</h3>
+				#{/if}
+				#{elseif params.positive=="-1"}
+						<h3>Diğer katılmayanların fikirleri:</h3>
+				#{/elseif}
 							
 				#{if params.positive=="1"}
 					#{list parent.positiveChild}
 						<span style="font-size:11px">
-							${_.owner.username}
+							${_.owner.username} /
+						</span>
+						<span style="font-size:11px">
+							${_.entryDate.format('dd MMMM yyyy','tr')}
 						</span>
 						<div style="clear:both;">							
 							
@@ -104,7 +115,7 @@
 	        		 	<br>
 					#{/list}
 					#{else}
-						Henüz bir cevap girilmemiş
+						Henüz bir şey girilmemiş.
 					#{/else}
 				#{/if}
 				#{elseif params.positive=="-1"}
@@ -141,7 +152,7 @@
         		 		<br>
 					#{/list}
 					#{else}
-						Henüz bir cevap girilmemiş
+						Henüz bir şey girilmemiş.
 					#{/else}
 				#{/elseif}
 			#{/if}             
