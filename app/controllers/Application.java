@@ -16,7 +16,7 @@ import play.mvc.With;
 public class Application extends Controller {
 
     public static void index(Long id,int positive) {
-    	Statement parent;
+        Statement parent;
     	boolean isFirst = false;
     	if(id == null ){
     		parent = Statement.find("order by id asc").first();
@@ -28,7 +28,15 @@ public class Application extends Controller {
     }
 
     public static void addStatement(Long parent, int positive, String text){
-    	if(text.equals("")){    		
+    	Suser suser = Auth.connectedUser();
+        if(suser == null){
+            flash.put("action","addStatement");
+            flash.put("parent",parent);
+            flash.put("positive",positive);
+            flash.put("text",text);
+            login();
+        }
+    	if(text.equals("")){
     		index(parent,positive);
     	}
     	Statement newStatement = new Statement();
@@ -43,6 +51,12 @@ public class Application extends Controller {
     }
 
     public static void upvoteStatement(Long id){
+        Suser suser = Auth.connectedUser();
+        if(suser == null){
+            flash.put("action","upvoteStatement");
+            flash.put("parent",id);
+            login();
+        }
     	Statement s = Statement.findById(id);
     	Suser user = Suser.findById("admin");
     	Upvote upvote = Upvote.find("suser = ? and statement = ?",user,s ).first();
@@ -63,9 +77,9 @@ public class Application extends Controller {
     }
     
     public static void login(){
-    	String randomID = Codec.UUID();
-    	render(randomID);
-    	render();
+        flash.keep();
+        String randomID = Codec.UUID();
+        render(randomID);    	
     }
     
     public static void logout() {              

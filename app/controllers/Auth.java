@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Suser;
+import play.Logger;
 import play.cache.Cache;
 import play.data.validation.Email;
 import play.data.validation.Equals;
@@ -34,6 +35,15 @@ public class Auth extends Controller{
             Application.login();
         }
         connect(user);
+        String action = flash.get("action");
+        if(action != null){
+            if(action.equals("addStatement")){
+                Application.addStatement(Long.parseLong(flash.get("parent")),Integer.parseInt(flash.get("positive")),flash.get("text"));
+            }
+            if(action.equals("upvoteStatement")){
+                Application.upvoteStatement(Long.parseLong(flash.get("parent")));
+            }
+        }
         Application.index(null,0);
     }
     
