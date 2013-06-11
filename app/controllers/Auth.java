@@ -25,11 +25,11 @@ public class Auth extends Controller{
 		return (userId == null) ? null : (Suser) Suser.findById(userId);
 	}
     
-    public static void authenticate(@Required String userName, @Required String password) {
-        Suser user = Suser.findByUsername(userName);
-        if (user == null || !user.checkPassword(password)) {
+    public static void authenticate(@Required String userNameLogin, @Required String passwordLogin) {
+        Suser user = Suser.findByUsername(userNameLogin);
+        if (user == null || !user.checkPassword(passwordLogin)) {
         	flash.error("Tüm alanları doğru doldurunuz");
-            flash.put("username", userName);
+            flash.put("username", userNameLogin);
             validation.keep();
             params.flash();
             Application.login();

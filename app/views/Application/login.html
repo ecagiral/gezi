@@ -3,7 +3,7 @@
 
 <div style="width:730px;margin:0 auto">
 	#{if flash?.error}
-		<div style="margin:0 auto;width:200px;heigt:auto;background:red;text-align:center;margin-bottom:10px">
+		<div class="alert alert-success" style="background:red;font-size:12px !important;height:20px !important;margin:0 auto;width:250px;color:white;text-align:center;border:1px solid white">	
 			${flash.error}
 		</div>
 	#{/if}
@@ -30,8 +30,8 @@
 	<div class="loginBoxContainer" style="margin-top:70px;float:left">
 		<form class="form-signin" action="@{Auth.authenticate}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
 			<h2 class="form-signin-heading" style="padding-bottom:10px">Giriş Yap</h2>
-			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userName" size="19" value="${flash.userName}" id="email" /> &nbsp;#{error 'userName' /} 
-			<input type="password" placeholder="Şifre" class="input-block-level" name="password" size="19" value="" id="password" /> &nbsp;#{error 'password' /}
+			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userNameLogin" size="19" value="${flash.userNameLogin}" id="email" /> &nbsp;#{error 'userNameLogin' /} 
+			<input type="password" placeholder="Şifre" class="input-block-level" name="passwordLogin" size="19" value="" id="password" /> &nbsp;#{error 'passwordLogin' /}
 			<br>
 			<button style="color:black" class="btn btn-large btn-warning" type="submit">Giriş</button>
 		</form>
