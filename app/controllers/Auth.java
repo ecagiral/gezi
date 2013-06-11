@@ -25,7 +25,7 @@ public class Auth extends Controller{
 		return (userId == null) ? null : (Suser) Suser.findById(userId);
 	}
     
-    public static void authenticate(@Required String userName, @Required String password) {
+    public static void authenticate(@Required String userName, @Required String password, String method, String param1, String param2, String param3) {
         Suser user = Suser.findByUsername(userName);
         if (user == null || !user.checkPassword(password)) {
         	flash.error("Tüm alanları doğru doldurunuz");
@@ -35,13 +35,12 @@ public class Auth extends Controller{
             Application.login();
         }
         connect(user);
-        String action = flash.get("action");
-        if(action != null){
-            if(action.equals("addStatement")){
-                Application.addStatement(Long.parseLong(flash.get("parent")),Integer.parseInt(flash.get("positive")),flash.get("text"));
+        if(method != null){
+            if(method.equals("addStatement")){
+                Application.addStatement(Long.parseLong(param1),Integer.parseInt(param2),param3);
             }
-            if(action.equals("upvoteStatement")){
-                Application.upvoteStatement(Long.parseLong(flash.get("parent")));
+            if(method.equals("upvoteStatement")){
+                Application.upvoteStatement(Long.parseLong(param1));
             }
         }
         Application.index(null,0);
@@ -55,7 +54,11 @@ public class Auth extends Controller{
 			@Required @MinSize(5) String password, 
 			@Required @MinSize(3) @MaxSize(15) String username,					
 			@Required String code,
-			String randomID) 
+			String randomID,
+            String method,
+            String param1,
+            String param2,
+            String param3)
 	{
 		
 	    validation.equals(code, Cache.get(randomID)).message(Messages.get("Yanlış giriş"));	
@@ -76,6 +79,14 @@ public class Auth extends Controller{
                 
         Cache.delete(randomID);
         connect(user);
+        if(method != null){
+            if(method.equals("addStatement")){
+                Application.addStatement(Long.parseLong(param1),Integer.parseInt(param2),param3);
+            }
+            if(method.equals("upvoteStatement")){
+                Application.upvoteStatement(Long.parseLong(param1));
+            }
+        }
         Application.index(null,0);
     }
 

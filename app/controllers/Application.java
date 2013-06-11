@@ -30,10 +30,10 @@ public class Application extends Controller {
     public static void addStatement(Long parent, int positive, String text){
     	Suser suser = Auth.connectedUser();
         if(suser == null){
-            flash.put("action","addStatement");
-            flash.put("parent",parent);
-            flash.put("positive",positive);
-            flash.put("text",text);
+            flash.put("method","addStatement");
+            flash.put("param1",parent);
+            flash.put("param2",positive);
+            flash.put("param3",text);
             login();
         }
     	if(text.equals("")){
@@ -45,7 +45,7 @@ public class Application extends Controller {
     	newStatement.positive = positive == 1 ? Boolean.TRUE : Boolean.FALSE;
     	String replacedText = text.replace("\r\n", "<br>");
     	newStatement.st_text = replacedText;
-    	newStatement.owner = Suser.findById("admin");
+    	newStatement.owner = suser;
     	newStatement.save();
         index(parent,positive);
     }
@@ -53,8 +53,10 @@ public class Application extends Controller {
     public static void upvoteStatement(Long id){
         Suser suser = Auth.connectedUser();
         if(suser == null){
-            flash.put("action","upvoteStatement");
-            flash.put("parent",id);
+            flash.put("method","upvoteStatement");
+            flash.put("param1",id);
+            flash.put("param2","");
+            flash.put("param3","");
             login();
         }
     	Statement s = Statement.findById(id);
@@ -79,7 +81,7 @@ public class Application extends Controller {
     public static void login(){
         flash.keep();
         String randomID = Codec.UUID();
-        render(randomID);    	
+        render(randomID);
     }
     
     public static void logout() {              

@@ -7,8 +7,7 @@
 			${flash.error}
 		</div>
 	#{/if}
-	
-	<div class="signUpBoxContainer" style="padding:10px;float:left">			
+	<div class="signUpBoxContainer" style="padding:10px;float:left">
 		<div style="margin-top:80px">
 			<form class="form-signin" action="@{Auth.register}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
 			  <h2 class="form-signin-heading" style="padding-bottom:10px">Üye Ol</h2>
@@ -18,6 +17,10 @@
 			  	<img style="float:left;display:block;clar:both " src="@{Application.captcha(randomID)}" />
 			  </div>
 			  <br>
+              <input type="hidden" name="method" value="&{flash.method}"/>
+              <input type="hidden" name="param1" value="&{flash.param1}"/>
+              <input type="hidden" name="param2" value="&{flash.param2}"/>
+              <input type="hidden" name="param3" value="&{flash.param3}"/>
 			  <label>Robot olmadığını kanıtla</label>
 		  	  <input type="text" name="code" id="code" size="18" value="" /> &nbsp;#{error 'code' /}<br>
 		  	  <input type="hidden" name="randomID" value="${randomID}" />
@@ -32,7 +35,11 @@
 			<h2 class="form-signin-heading" style="padding-bottom:10px">Giriş Yap</h2>
 			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userName" size="19" value="${flash.userName}" id="email" /> &nbsp;#{error 'userName' /} 
 			<input type="password" placeholder="Şifre" class="input-block-level" name="password" size="19" value="" id="password" /> &nbsp;#{error 'password' /}
-			<br>
+			<input type="hidden" name="method" value="&{flash.method}"/>
+            <input type="hidden" name="param1" value="&{flash.param1}"/>
+            <input type="hidden" name="param2" value="&{flash.param2}"/>
+            <input type="hidden" name="param3" value="&{flash.param3}"/>
+            <br>
 			<button style="color:black" class="btn btn-large btn-warning" type="submit">Giriş</button>
 		</form>
 	</div>
