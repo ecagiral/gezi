@@ -84,6 +84,12 @@ public class Application extends Controller {
     
     public static void login(){
         flash.keep();
+        if(!flash.contains("method")){
+        	flash.put("method", "");
+        	flash.put("param1","");
+            flash.put("param2","");
+            flash.put("param3","");
+        }     
         String randomID = Codec.UUID();
         render(randomID);
     }

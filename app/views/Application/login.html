@@ -39,8 +39,6 @@
 	<div class="loginBoxContainer" style="margin-top:70px;float:left">
 		<form class="form-signin" action="@{Auth.authenticate}" method="POST" accept-charset="${_response_encoding}" style="background-color: #115685;border: 1px solid #114567;color:white">
 			<h2 class="form-signin-heading" style="padding-bottom:10px">Giriş Yap</h2>
-			<input type="text" class="input-block-level" placeholder="Kullanıcı Adı" name="userName" size="19" value="${flash.userName}" id="email" /> &nbsp;#{error 'userName' /}
-			<input type="password" placeholder="Şifre" class="input-block-level" name="password" size="19" value="" id="password" /> &nbsp;#{error 'password' /}
 			<input type="hidden" name="method" value="&{flash.method}"/>
             <input type="hidden" name="param1" value="&{flash.param1}"/>
             <input type="hidden" name="param2" value="&{flash.param2}"/>
