@@ -44,15 +44,31 @@ public class Statement extends Model {
 
     
     public List<Statement> getNegativeChild() {
-		return Statement.find("parent = ? and positive = ? order by entryDate DESC", this , Boolean.FALSE).fetch();
+		return Statement.find("parent = ? and positive = ? order by point DESC", this , Boolean.FALSE).fetch();
 	}
     
     public List<Statement> getPositiveChild() {
-    	return Statement.find("parent = ? and positive = ? order by entryDate DESC", this , Boolean.TRUE).fetch();
+    	return Statement.find("parent = ? and positive = ? order by point DESC", this , Boolean.TRUE).fetch();
 	}
     @ManyToOne
     public Suser owner;
 
     public int point;
+    
+    public String getAbbrTitle(int maxLength){
+      
+            if(st_text.length() > maxLength){
+                //Conversation.anchorString
+                if(st_text.contains("<a href=")){
+                	return st_text.substring(0,maxLength) + "...";
+                }else{
+                	return st_text.substring(0,maxLength) + "...";
+                }
+            }else{
+                return st_text;
+            }
+			
+
+    }
 
 }

@@ -1,12 +1,16 @@
 body {
 padding-bottom: 40px;
-/* font-family: 'Open Sans', sans-serif !important; */
-font-family: 'Inconsolata', sans-serif !important;
+font-family: 'Open Sans', sans-serif !important;
+/* font-family: 'Inconsolata', sans-serif !important; */
 padding-bottom: 40px;
 }
 
+a:hover{
+text-decoration:none !important;	
+}
+
 .muted{
-font-size:24px !important;
+font-size:30px !important;
 }
 h3{
 font-size:20px !important;	
@@ -25,7 +29,7 @@ font-size:20px !important;
   text-align: center;
 }
 .jumbotron h1 {
-  font-size: 35px;
+  font-size: 30px;
   line-height: 1;
   padding-bottom:10px;
 }
@@ -73,4 +77,19 @@ font-size:22px;
 textarea::-webkit-input-placeholder {
 color:gray;
 font-size:22px;
+}
+
+a.morelink {
+    text-decoration:none;
+    outline: none;
+    color:black;
+    background:gray;
+}
+
+.morecontent span {
+	display: none;
+}
+
+.more{
+display:block;font-size:24px;padding-bottom:20px;line-height:1;font-weight:700;
 }

@@ -34,8 +34,10 @@
       			def reverse = ll.reverse()
       			}%
       			#{list reverse, as:'item'}
-      				<a href="/${item.id}/0">					        		
-        			<h1>${item.st_text}</h1>      				
+      				<a href="/${item.id}/0">
+      					<span class="comment more">	      									        		
+	        				${item.st_text}      					        			
+        				</span>
         			</a>
         			#{if !item_isLast}<i class="icon-arrow-down"></i>#{/if}   
         		#{/list}
@@ -81,17 +83,17 @@
 							
 				#{if params.positive=="1"}
 					#{list parent.positiveChild}
-						<span style="font-size:11px">
+						<span style="font-size:12px">
 							${_.owner.username} /
 						</span>
-						<span style="font-size:11px">
+						<span style="font-size:12px">
 							${_.entryDate.format('dd MMMM yyyy','tr')}
 						</span>
 						<div style="clear:both;">							
 							
 							<div style="float:left;margin-right:10px">							
-								<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
-									<span style="font-size:11px;">${_.st_text.raw()}</span>
+								<div style="line-height:16px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
+									<span style="font-size:12px;">${_.st_text.raw()}</span>
 								</div>
 							</div>						
 							
@@ -120,15 +122,15 @@
 				#{/if}
 				#{elseif params.positive=="-1"}
 					#{list parent.negativeChild}
-						<span style="font-size:11px">
+						<span style="font-size:12px">
 							${_.owner.username}
 						</span>
 						
 						<div style="clear:both;">							
 						
 							<div style="float:left;margin-right:10px">							
-								<div style="line-height:12px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
-									<span style="font-size:11px;">${_.st_text.raw()}</span>
+								<div style="line-height:16px !important;margin:2px 0 5px 0;border:1px solid #ebebeb;width:540px;height:auto;padding:5px 0px 5px 5px">
+									<span style="font-size:12px;">${_.st_text.raw()}</span>
 								</div>
 							</div>						
 						

@@ -50,7 +50,7 @@ public class Application extends Controller {
     	newStatement.owner = suser;
     	newStatement.entryDate = new Date();
     	newStatement.save();
-    	flash.put("successMessage","Gönderildi");
+    	flash.put("successMessage","Yorumun gönderildi");
         index(parent,positive);
     }
 
@@ -71,6 +71,7 @@ public class Application extends Controller {
     	long count = upvote.count("statement=?",s);
     	s.point =(int)count;
     	s.save();
+    	flash.put("successMessage","Oyun kabul edildi");
         index(s.parent.id,s.positive ? 1 : -1);
     }
     
