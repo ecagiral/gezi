@@ -45,8 +45,8 @@ public class Application extends Controller {
     	Statement orig = Statement.findById(parent);
     	newStatement.parent = orig;
     	newStatement.positive = positive == 1 ? Boolean.TRUE : Boolean.FALSE;
-    	String replacedText = text.replace("\r\n", "<br>");
-    	newStatement.st_text = replacedText;
+    	String statementText = Util.getStatementText(text);
+    	newStatement.st_text = statementText.replace("\r\n", "<br>");
     	newStatement.owner = suser;
     	newStatement.entryDate = new Date();
     	newStatement.save();
