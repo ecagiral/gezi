@@ -1,6 +1,7 @@
 body {
 padding-bottom: 40px;
-font-family: 'Open Sans', sans-serif;
+/* font-family: 'Open Sans', sans-serif !important; */
+font-family: 'Inconsolata', sans-serif !important;
 padding-bottom: 40px;
 }
 
