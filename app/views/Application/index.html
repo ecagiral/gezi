@@ -100,7 +100,9 @@
                             <div style="float:left;position:relative;top:2px">
                                 <form method="POST" action="@{Application.deleteStatement}">
                                     <input  type="hidden" name="id" value="${_.id}">
-                                    <input  type="submit" class="btn btn-mini btn-danger" value="&nbsp;&nbsp;&nbsp;Sil" />
+                                     #{if connected.username==_.owner.username}
+                                    	<input  type="submit" class="btn btn-mini btn-danger" value="Sil" style="text-align: center;margin-right: 10px;"/>
+                                     #{/if}
                                 </form>
                             </div>
 							<div style="float:left;position:relative;top:2px">
