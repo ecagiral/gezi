@@ -1,5 +1,8 @@
 package models;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.ForeignKey;
 import play.data.validation.Valid;
 import play.db.jpa.Model;
 
@@ -32,7 +35,12 @@ import java.util.regex.Pattern;
 public class Statement extends Model {
 
 	@ManyToOne()
+    @ForeignKey(name="statementchild_FK")
     public Statement parent;
+
+    @OneToMany(mappedBy="parent")
+    @Cascade(value = {CascadeType.DELETE })
+    public List<Statement> children;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	public Date entryDate;
@@ -42,6 +50,9 @@ public class Statement extends Model {
     @Column(columnDefinition="TEXT")    
     public String st_text;
 
+    @OneToMany(mappedBy = "statement")
+    @Cascade(value = {CascadeType.DELETE })
+    public List<Upvote> upvotes;
     
     public List<Statement> getNegativeChild() {
 		return Statement.find("parent = ? and positive = ? order by entryDate DESC", this , Boolean.FALSE).fetch();
