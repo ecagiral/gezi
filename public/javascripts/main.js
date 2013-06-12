@@ -1,8 +1,8 @@
 $(document).ready(function() {
 	var showChar = 120;
 	var ellipsestext = "...";
-	var moretext = "more";
-	var lesstext = "less";
+	var moretext = "Devamını gör";
+	var lesstext = "Özet";
 	$('.more').each(function() {
 		var content = $(this).clone().find('a').remove().end().text();
 		if(content.length > showChar) {

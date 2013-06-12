@@ -39,7 +39,7 @@ font-size:20px !important;
 }
 
 .marketing {
-  margin: 60px 0;
+  margin: 40px 0 40px 0;
 }
 .marketing p + h4 {
   margin-top: 28px;
@@ -84,6 +84,7 @@ a.morelink {
     outline: none;
     color:black;
     background:gray;
+    font-size:20px;
 }
 
 .morecontent span {
@@ -91,5 +92,9 @@ a.morelink {
 }
 
 .more{
-display:block;font-size:24px;padding-bottom:20px;line-height:1;font-weight:700;
+display:block;font-size:24px;line-height:1;font-weight:700;margin-bottom:20px;
+}
+
+.arrow{
+margin:20px 0 20px 0;	
 }
