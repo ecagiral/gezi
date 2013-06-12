@@ -6,8 +6,10 @@
 GET     /captcha                           Application.captcha
 GET     /login                             Application.login
 GET     /signup                            Application.signup
-*    /upvoteStatement                   Application.upvoteStatement
-*       /addStatement                         Application.addStatement
+*       /upvoteStatement                   Application.upvoteStatement
+*       /addStatement                      Application.addStatement
+*       /deleteStatement                   Application.deleteStatement
+*       /editStatement                     Application.editStatement
 GET     /logout                            Application.logout
 # Home page
 GET     / 								   Application.index

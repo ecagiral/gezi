@@ -54,6 +54,54 @@ public class Application extends Controller {
         index(parent,positive);
     }
 
+    public static void deleteStatement(Long id){
+        Suser suser = Auth.connectedUser();
+        if(suser == null){
+            flash.put("method","deleteStatement");
+            flash.put("param1",id);
+            flash.put("param2","");
+            flash.put("param3","");
+            login();
+        }
+        Statement st = Statement.findById(id);
+        if(st==null){
+            flash.put("successMessage","Yorum bulunamadi");
+            index(null,0);
+        }
+        if(suser != st.owner){
+            flash.put("successMessage","Silme hakkin yok");
+            index(st.parent.id,st.positive ? 1 : -1);
+        }
+        Statement parent = st.parent;
+        int pos = st.positive ? 1 : -1;
+        st.delete();
+        index(parent.id,pos);
+    }
+
+    public static void editStatement(Long id,String text){
+        Suser suser = Auth.connectedUser();
+        if(suser == null){
+            flash.put("method","editStatement");
+            flash.put("param1",id);
+            flash.put("param2",text);
+            flash.put("param3","");
+            login();
+        }
+        Statement st = Statement.findById(id);
+        if(st==null){
+            flash.put("successMessage","Yorum bulunamadi");
+            index(null,0);
+        }
+        if(suser != st.owner){
+            flash.put("successMessage","Degisiklik hakkin yok");
+            index(st.id,0);
+        }
+        String statementText = Util.getStatementText(text);
+        st.st_text = statementText.replace("\r\n", "<br>");
+        st.save();
+        index(st.parent.id,st.positive ? 1 : -1);
+    }
+
     public static void upvoteStatement(Long id){
         Suser suser = Auth.connectedUser();
         if(suser == null){
