@@ -70,7 +70,7 @@ public class Application extends Controller {
         }
         if(suser != st.owner){
             flash.put("successMessage","Silme hakkin yok");
-            index(st.id,0);
+            index(st.parent.id,st.positive ? 1 : -1);
         }
         Statement parent = st.parent;
         int pos = st.positive ? 1 : -1;
