@@ -64,10 +64,9 @@ public class Application extends Controller {
             login();
         }
     	Statement s = Statement.findById(id);
-    	Suser user = Suser.findById("admin");
-    	Upvote upvote = Upvote.find("suser = ? and statement = ?",user,s ).first();
+    	Upvote upvote = Upvote.find("suser = ? and statement = ?",suser,s ).first();
     	if(upvote == null){
-    		new Upvote(user,s).save();    		
+    		new Upvote(suser,s).save();
     	}
     	long count = upvote.count("statement=?",s);
     	s.point =(int)count;
