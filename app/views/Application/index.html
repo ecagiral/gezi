@@ -39,7 +39,14 @@
 	        				${item.st_text}      					        			
         				</span>
         			</a>
-        			#{if !item_isLast}<i class="icon-arrow-down"></i>#{/if}   
+        			#{if !item_isLast}
+                        #{if reverse[item_index].positive}
+                            <span style="color:green">katiliyorum cunku</span>
+                        #{/if}
+                        #{else}
+                            <span style="color:red">katilmiyorum cunku</span>
+                        #{/else}
+                    #{/if}
         		#{/list}
         		 
         		#{if positive==0}
