@@ -75,6 +75,7 @@ public class Application extends Controller {
         Statement parent = st.parent;
         int pos = st.positive ? 1 : -1;
         st.delete();
+        flash.put("successMessage","Yorumun silindi");
         index(parent.id,pos);
     }
 
