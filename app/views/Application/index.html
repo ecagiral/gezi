@@ -100,7 +100,7 @@
                             <div style="float:left;position:relative;top:2px">
                                 <form method="POST" action="@{Application.deleteStatement}">
                                     <input  type="hidden" name="id" value="${_.id}">
-                                     #{if connected.username==_.owner.username}
+                                     #{if connected?.username==_.owner?.username}
                                     	<input  type="submit" class="btn btn-mini btn-danger" value="Sil" style="text-align: center;margin-right: 10px;"/>
                                      #{/if}
                                 </form>
@@ -141,7 +141,16 @@
 									<span style="font-size:12px;">${_.st_text.raw()}</span>
 								</div>
 							</div>						
-						
+							
+						   <div style="float:left;position:relative;top:2px">
+                                <form method="POST" action="@{Application.deleteStatement}">
+                                    <input  type="hidden" name="id" value="${_.id}">
+                                     #{if connected?.username==_.owner?.username}
+                                    	<input  type="submit" class="btn btn-mini btn-danger" value="Sil" style="text-align: center;margin-right: 10px;"/>
+                                     #{/if}
+                                </form>
+                            </div>
+                            
 							<div style="float:left;position:relative;top:2px">
 							    <form method="POST" action="@{Application.upvoteStatement}">
 		        		 			<input  type="hidden" name="id" value="${_.id}">  
