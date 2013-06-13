@@ -1,0 +1,30 @@
+<div id ="fixedHeader">
+	<div id="fixedHeaderContainer">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">		
+				<div class="container-fluid header">
+						
+				<ul class="nav pull-left" id="headerLeft">
+					<li>
+						 <a class="logoContainer" href="/" style="text-decoration:none;">
+						 	<h3 class="logo">#serbestsandik</h3>
+						 </a>
+					</li>	
+		     	</ul>
+				
+				<ul class="nav nav-pills pull-right">
+			        #{if !_connected}
+			          <li><a href="/login" style="color:Black" class="login">Katıl</a></li>
+			        #{/if}        
+			          <li class="active" style="margin-right:10px"><a href="/nedir">Nedir?</a></li>        
+			        #{else}
+			          <li style="margin:7px -7px 0 0">          
+			          	${_connected?.username}<a style="color:red;padding-left:4px;display:inline;background:white" href="/logout">(Çıkış)</a>
+			          </li>          
+			        #{/else}          
+		        </ul>
+		        </div>  	
+		 	</div>
+		</div>
+	</div>
+</div>

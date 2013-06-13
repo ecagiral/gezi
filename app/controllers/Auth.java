@@ -29,7 +29,7 @@ public class Auth extends Controller{
         Suser user = Suser.findByUsername(userNameLogin);
         if (user == null || !user.checkPassword(passwordLogin)) {
         	flash.error("Tüm alanları doğru doldurunuz");
-            flash.put("username", userNameLogin);
+            flash.put("userNameLogin", userNameLogin);
             validation.keep();
             params.flash();
             Application.login();
@@ -65,6 +65,7 @@ public class Auth extends Controller{
         if (validation.hasErrors()) {
         	validation.keep();
             params.flash();
+            flash.put("username", username);
             flash.error("Tüm alanları doğru doldurunuz");
             Application.login();
         }
