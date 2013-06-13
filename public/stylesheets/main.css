@@ -235,3 +235,8 @@ font-size:11px;
 padding:0px;
 vertical-align:bottom;
 }
+
+.expand {
+    height: 1em;   
+    height: 70px;border-radius: 10px;width:665px;padding:15px;
+}

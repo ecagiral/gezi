@@ -96,10 +96,10 @@
 					<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
 			 	 		<fieldset>  
 			 	 		#{if params.positive=="1"} 		
-			    			<textarea style="height: 145px;border-radius: 10px;width:665px;padding:15px" rows="3" placeholder="fikrini yaz..." name="text"></textarea>
+			    			<textarea class="expand" rows="3" placeholder="fikrini yaz..." name="text"></textarea>
 			    		#{/if}
 			    		#{elseif params.positive=="-1"}
-			    			<textarea style="height: 145px;border-radius: 10px;width:685px;padding:15px" rows="3" placeholder="fikrini yaz..." name="text"></textarea>			    		
+			    			<textarea class="expand" rows="3" placeholder="fikrini yaz..." name="text"></textarea>			    		
 			    		#{/elseif}
 			    		<input type="hidden" name="parent" value="${parent.id}"/>
 			    		<input type="hidden" name="positive" value='${params.positive}'/>
@@ -171,7 +171,7 @@
 							<div class="clearfix"></div>							
 	        		 	</div>
 	        		 	<div style="height:0px;border:1px solid #ebebeb;width:670px;margin: 0 auto"></div>
-	        		 	<br>
+	        	
 	        		 	</div>
 					#{/list}
 					#{else}
@@ -234,7 +234,7 @@
 							<div class="clearfix"></div>							
 	        		 	</div>
 	        		 	<div style="height:0px;border:1px solid #ebebeb;width:670px;margin: 0 auto"></div>
-	        		 	<br>
+	  
 	        		 	</div>
 					#{/list}
 					#{else}

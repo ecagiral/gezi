@@ -29,4 +29,16 @@ $(document).ready(function() {
 		$(this).prev().toggle();
 		return false;
 	});
+	
+	
+	$(function() {
+		$('textarea.expand').on('click', function() {
+			$(this).animate({ height: "145px" }, 200);
+	    });
+
+	    $('textarea.expand').on('blur', function() {
+	    	 $('textarea.expand').animate({ height: "70px" }, 200);
+	    });
+	});
+	
 });
