@@ -17,7 +17,7 @@ public class Startup extends Job {
 			suser = new Suser("admin","12345").save();
 			Statement s = new Statement();
 			s.owner = suser;
-			s.st_text = "Gezi parkı direnişini destekliyorum";
+			s.st_text = "GEZİ PARKI DİRENİŞİNİ DESTEKLİYORUM";
 			s.entryDate = new Date();
 			s.save();
 		}		
