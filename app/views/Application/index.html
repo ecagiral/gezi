@@ -78,13 +78,13 @@
         		#{elseif positive==1}
         			<div class="arrow">
         		 		<i class="icon-arrow-down"></i>
-        		 		<span style="color:green;">katiliyorum çünkü</span>
+<!--         		 		<span style="color:green;">katiliyorum çünkü</span> -->
         		 	</div>
         		#{/elseif} 
         		#{elseif positive==-1}
         			<div class="arrow">
         		 		<i class="icon-arrow-down"></i>
-        		 		<span style="color:red;">katilmiyorum çünkü</span>
+<!--         		 		<span style="color:red;">katilmiyorum çünkü</span> -->
         		 	</div>
         		#{/elseif}               
       </div>
@@ -96,15 +96,23 @@
 					<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
 			 	 		<fieldset>  
 			 	 		#{if params.positive=="1"} 		
-			    			<textarea class="expand" rows="3" placeholder="fikrini yaz..." name="text"></textarea>
+			    			<textarea class="expand" rows="3" placeholder="Katılıyorsan fikrini yaz..." name="text"></textarea>
 			    		#{/if}
 			    		#{elseif params.positive=="-1"}
-			    			<textarea class="expand" rows="3" placeholder="fikrini yaz..." name="text"></textarea>			    		
+			    			<textarea class="expand" rows="3" placeholder="Katılmıyorsan fikrini yaz..." name="text"></textarea>			    		
 			    		#{/elseif}
 			    		<input type="hidden" name="parent" value="${parent.id}"/>
 			    		<input type="hidden" name="positive" value='${params.positive}'/>
 			    		<br>    		    	    
-			    		<button type="submit" class="btn btn-large btn-success send" style="float:right" >Gönder</button>
+			    		
+			    		#{if params.positive=="1"} 		
+			    			<button type="submit" class="btn btn-large btn-success send" style="float:right" >Gönder</button>
+			    		#{/if}
+			    		#{elseif params.positive=="-1"}
+			    			<button type="submit" class="btn btn-large btn-danger send" style="float:right" >Gönder</button>			    		
+			    		#{/elseif}
+			    		
+			    		
 			  			</fieldset>
 					</form>					
 				#{/if}
