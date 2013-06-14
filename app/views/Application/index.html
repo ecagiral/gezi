@@ -95,10 +95,16 @@
         		#{if params.positive!="0"}
 					<form  action="@{Application.addStatement}" method="POST" accept-charset="${_response_encoding}" autocomplete="off">
 			 	 		<fieldset>  
-			 	 		#{if params.positive=="1"} 		
+			 	 		#{if params.positive=="1"} 					 	 			
+			 	 			<!--[if IE]>
+								<span>Katılıyorsan fikrini yaz...</span>			
+			  				<![endif]-->  
 			    			<textarea class="expand" rows="3" placeholder="Katılıyorsan fikrini yaz..." name="text"></textarea>
 			    		#{/if}
 			    		#{elseif params.positive=="-1"}
+			    			<!--[if IE]>
+								<span>Katılmıyorsan fikrini yaz...</span>			
+			  				<![endif]-->  
 			    			<textarea class="expand" rows="3" placeholder="Katılmıyorsan fikrini yaz..." name="text"></textarea>			    		
 			    		#{/elseif}
 			    		<input type="hidden" name="parent" value="${parent.id}"/>
