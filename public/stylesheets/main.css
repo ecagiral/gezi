@@ -110,7 +110,7 @@ a.morelink {
 }
 
 .more{
-display:block;font-size:24px;line-height:1;font-weight:700;margin-bottom:20px;color:Black;
+display:block;font-size:23px;line-height:1;font-weight:700;margin-bottom:20px;color:Black;
 }
 
 .more:hover{
@@ -216,14 +216,14 @@ box-shadow:none;
 
 .navbar-inner {
 background:white !important;
-border:0px;
-height:65px;
-padding-left:0px;
-padding-right:0px;
-margin-bottom:0px;
--webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23);
--moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23);
-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23);
+border:0px !important;
+height:65px !important;
+padding-left:0px !important;
+padding-right:0px !important;
+margin-bottom:0px !important;
+-webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23) !important;
+-moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23) !important;
+box-shadow: 0 1px 4px rgba(0, 0, 0, 0.23) !important;
 filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFFFFF', endColorstr='#FFFFFF', GradientType=0) !important;
 }
 
