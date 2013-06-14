@@ -131,14 +131,14 @@
 						<span style="font-size:11px;font-weight: 700;">
 							${_.owner.username}
 						</span>
-						<span style="font-size:11px;float:right;color:#C9C7C7;font-weight: 700;">
+						<span style="font-size:11px;float:right;color:#C9C7C7;font-weight: 600;">
 							${_.entryDate.format('dd MMMM yyyy','tr')}
 						</span>
 						
 						<div style="clear:both;margin-bottom:5px">														
 							<div style="float:left;margin-right:10px;margin-bottom:5px">							
 								<div style="line-height:19px !important;margin:2px 0 5px 0;width:600px;height:auto;">
-									<span style="font-size:11px;color:gray">${_.st_text.raw()}</span>
+									<span style="font-size:12px;color:gray">${_.st_text.raw()}</span>
 								</div>
 							</div>
 							
@@ -204,14 +204,14 @@
 						<span style="font-size:11px;font-weight: 700;">
 							${_.owner.username}
 						</span>
-						<span style="font-size:11px;float:right;color:#C9C7C7;font-weight: 700;">
+						<span style="font-size:11px;float:right;color:#C9C7C7;font-weight: 600;">
 							${_.entryDate.format('dd MMMM yyyy','tr')}
 						</span>
 						
 						<div style="clear:both;margin-bottom:5px">														
 							<div style="float:left;margin-right:10px;margin-bottom:5px">							
 								<div style="line-height:16px !important;margin:2px 0 5px 0;width:600px;height:auto;">
-									<span style="font-size:11px;color:gray">${_.st_text.raw()}</span>
+									<span style="font-size:12px;color:gray">${_.st_text.raw()}</span>
 								</div>
 							</div>
 							
@@ -226,6 +226,16 @@
 	        		 				<span class="katilma-el-small"></span>	        		 				
 	        		 				<span style="font-size:11px;color:red;margin-left:-5px">Katılmayanları gör</span><span style="margin-left:3px;font-size:11px;color:black">(${_.negativeChild.size()})</span>
 	        		 			</a>
+	        		 			<div class="btn-group" style="display:inline-block;margin-left:-10px">
+  									<a style="margin-left: 10px;background: #FFF;font-size: 11px;border: 0px;" class="btn dropdown-toggle" data-toggle="dropdown" href="#">    									
+    									<i class="icon-share"></i>
+    									Paylaş
+  									</a>
+  									<ul class="dropdown-menu share"> 										
+   										<span style="font-size:11px">Aşağıdaki linki kopyalayıp paylaşabilirsiniz.</span><br>
+   										<input style="width: 240px;" type="text" value="http://www.serbestsandik.com/${_.id}/0" />
+  									</ul>
+								</div>
 	        		 		</div>
 	        		 		
 	        		 		<div style="float:right">
