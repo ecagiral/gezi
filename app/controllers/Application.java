@@ -2,6 +2,7 @@
 package controllers;
 
 import java.util.Date;
+import java.util.List;
 
 import models.Statement;
 
@@ -76,7 +77,7 @@ public class Application extends Controller {
         int pos = st.positive ? 1 : -1;
         st.delete();
         flash.put("successMessage","Yorumun silindi");
-        index(parent.id,pos);
+        index(parent.id, pos);
     }
 
     public static void editStatement(Long id,String text){
@@ -120,7 +121,7 @@ public class Application extends Controller {
     	long count = upvote.count("statement=?",s);
     	s.point =(int)count;
     	s.save();
-    	flash.put("successMessage","Oyun kabul edildi");
+    	flash.put("successMessage", "Oyun kabul edildi");
         index(s.parent.id,s.positive ? 1 : -1);
     }
     
@@ -146,6 +147,15 @@ public class Application extends Controller {
     public static void logout() {              
         session.clear();
         index(null,0);
+    }
+
+    public static void profile(){
+        Suser suser = Auth.connectedUser();
+        if(suser==null){
+            index(null,0);
+        }
+        List<Statement> responses = Statement.find("select c from Statement p join p.children c where p.owner = ? and c.owner != ? order by c.entryDate desc",suser ,suser).fetch();
+        render(responses);
     }
 
 }

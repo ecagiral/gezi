@@ -1,0 +1,78 @@
+#{extends 'main.html' /}
+#{set title:'#serbestsandik' /}
+
+#{header connected:connected /}
+
+<div class="container-narrow">
+    <div class="jumbotron">
+        <h2>Sana verilen cevaplar</h2>
+    </div>
+
+    <div class="row-fluid marketing">
+        <div class="span12">
+            <div style="background:white;border-radius:10px;font-weight: 600;">
+            #{list responses}
+                <div style="padding:10px">
+						<span style="font-size:11px;font-weight: 700;">
+							${_.owner.username}
+						</span>
+						<span style="font-size:11px;float:right;color:#C9C7C7;font-weight: 700;">
+							${_.entryDate.format('dd MMMM yyyy','tr')}
+						</span>
+
+                    <div style="clear:both;margin-bottom:5px">
+                        <div style="float:left;margin-right:10px;margin-bottom:5px">
+                            <div style="line-height:19px !important;margin:2px 0 5px 0;width:540px;height:auto;">
+                                <a href="/${_.id}/0" style="font-size:11px;color:gray">${_.st_text.raw()}</a>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+
+                        <div style="float:left;">
+                            <a href="/${_.id}/1">
+                                <span class="katil-el-small"></span>
+                                <span style="font-size:11px;color:green;margin-left:-5px">Katılanları gör</span><span style="margin-left:3px;font-size:11px;color:black">(${_.positiveChild.size()})</span>
+                            </a>
+                            <a href="/${_.id}/-1">
+                                <span class="katilma-el-small"></span>
+                                <span style="font-size:11px;color:red;margin-left:-5px">Katılmayanları gör</span><span style="margin-left:3px;font-size:11px;color:black">(${_.negativeChild.size()})</span>
+                            </a>
+                        </div>
+
+                        <div style="float:right">
+                            <div style="float:right;position:relative;margin-left:10px">
+                                <form style="margin-bottom:10px;" method="POST" action="@{Application.deleteStatement}">
+                                    <input  type="hidden" name="id" value="${_.id}">
+                                    #{if connected?.username==_.owner?.username}
+                                    <input  type="submit" class="btn btn-mini btn-danger" value="Sil" style="text-align: center;margin-right: 10px;"/>
+                                    #{/if}
+                                </form>
+                            </div>
+                            <div style="float:right;position:relative;">
+                                <form style="margin-bottom:10px;" method="POST" action="@{Application.upvoteStatement}">
+                                    <input  type="hidden" name="id" value="${_.id}">
+                                    <button type="submit" class="upvoteButton">
+                                        <span class="vote-small"></span>
+                                        Yukarı Taşı
+                                    </button>
+                                    <span style="font-size:11px;font-weight:bold;margin-top:2px;color:gray">(${_.point})</span>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div style="height:0px;border:1px solid #ebebeb;width:670px;margin: 0 auto"></div>
+
+                </div>
+            #{/list}
+            #{else}
+            <div style="padding:10px">
+                Henüz bir şey girilmemiş.
+            </div>
+            #{/else}
+            </div>
+        </div>
+    </div>
+</div>

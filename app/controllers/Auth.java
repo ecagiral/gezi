@@ -69,7 +69,13 @@ public class Auth extends Controller{
             flash.error("Tüm alanları doğru doldurunuz");
             Application.login();
         }
-       
+        Suser existing = Suser.findByUsername(username);
+        if(existing!=null){
+            params.flash();
+            flash.put("username", username);
+            flash.error("Bu isim kullanimda.");
+            Application.login();
+        }
         Suser user = new Suser(username, password);
         try {
         	user.save();

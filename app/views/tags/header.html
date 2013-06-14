@@ -18,8 +18,8 @@
 			        #{/if}        
 			          <li class="active" style="margin-right:10px"><a href="/nedir">Nedir?</a></li>        
 			        #{else}
-			          <li style="margin:7px -7px 0 0">          
-			          	${_connected?.username}<a style="color:red;padding-left:4px;display:inline;background:white" href="/logout">(Çıkış)</a>
+			          <li style="margin:7px -7px 0 0">
+                          <a style="color:black;display:inline;margin-right:0px;padding-right:3px" href="/profile">${_connected?.username}</a><a style="color:red;padding-left:4px;display:inline;background:white" href="/logout">(Çıkış)</a>
 			          </li>          
 			        #{/else}          
 		        </ul>
