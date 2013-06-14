@@ -4,12 +4,15 @@
     <head>
         <title>#{get 'title' /}</title>
         <meta charset="${_response_encoding}">
-        <meta name="description" content="serbest sandik,gorus bildir,platform,oylama" />
-        <meta content='serbest sandik,gorus bildir,platform,oylama' name='keywords' />           
+        <meta content='serbest sandik,gorus bildir,platform,oylama' name='keywords' />  
+        <meta name="description" content="İlgilendiğin, endişe duyduğun konular hakkında fikirlerini aktarabileceğin, tartışabileceğin bir platformun ilk adımı." />                         
         <meta property="og:site_name" content="#serbestsandik" />
 		<meta property="og:url" content="http://www.serbestsandik.com" />
 		<meta property="og:title" content="serbestsandik" />
-		<meta property="og:image" content="@{'/public/images/favicon.png'}" />		             
+		<meta property="og:description" content="İlgilendiğin, endişe duyduğun konular hakkında fikirlerini aktarabileceğin, tartışabileceğin bir platformun ilk adımı." />		
+		<meta property="og:image" content="@{'/public/images/avatar.jpg'}" />			
+        <link rel="shortcut icon" type="image/png" href="@{'/public/images/favicon.png'}">
+        <link rel="image_src" href="@{'/public/images/avatar.jpg'}" />			             
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         #{stylesheet 'bootstrap.css'/}
         #{stylesheet 'bootstrap-responsive.css'/}
@@ -35,5 +38,4 @@
 
     ga('create', 'UA-37334192-2', 'serbestsandik.com');
     ga('send', 'pageview');
-
 </script>
