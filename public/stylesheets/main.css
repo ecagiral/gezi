@@ -237,10 +237,18 @@ background:white;
 border:0px;
 font-size:11px;
 padding:0px;
-vertical-align:bottom;
+margin-left:-4px;
 }
 
 .expand {
     height: 1em;   
     height: 70px;border-radius: 10px;width:665px;padding:15px;
 }
+
+.share{
+width: 256px;
+padding: 20px 10px 10px 10px;
+margin: 3px 0 0 10px;
+}	
+
+

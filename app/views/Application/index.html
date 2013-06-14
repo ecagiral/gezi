@@ -124,7 +124,7 @@
 						<h3>Diğer katılmayanların fikirleri:</h3>
 				#{/elseif}
 				
-				<div style="background:white;border-radius:10px;font-weight: 600;">			
+				<div style="background:white;border-radius:10px;font-weight: 600;margin-bottom:40px;">			
 				#{if params.positive=="1"}
 					#{list parent.positiveChild}
 						<div style="padding:10px">
@@ -137,7 +137,7 @@
 						
 						<div style="clear:both;margin-bottom:5px">														
 							<div style="float:left;margin-right:10px;margin-bottom:5px">							
-								<div style="line-height:19px !important;margin:2px 0 5px 0;width:540px;height:auto;">
+								<div style="line-height:19px !important;margin:2px 0 5px 0;width:600px;height:auto;">
 									<span style="font-size:11px;color:gray">${_.st_text.raw()}</span>
 								</div>
 							</div>
@@ -145,7 +145,7 @@
 							<div class="clearfix"></div>
 							
 							<div style="float:left;">
-								<a href="/${_.id}/1">
+								<a href="/${_.id}/1" style="margin-right:10px">
 									<span class="katil-el-small"></span>
 									<span style="font-size:11px;color:green;margin-left:-5px">Katılanları gör</span><span style="margin-left:3px;font-size:11px;color:black">(${_.positiveChild.size()})</span>
 								</a>
@@ -153,6 +153,17 @@
 	        		 				<span class="katilma-el-small"></span>	        		 				
 	        		 				<span style="font-size:11px;color:red;margin-left:-5px">Katılmayanları gör</span><span style="margin-left:3px;font-size:11px;color:black">(${_.negativeChild.size()})</span>
 	        		 			</a>
+	        		 			
+	        		 			<div class="btn-group" style="display:inline-block;margin-left:-10px">
+  									<a style="margin-left: 10px;background: #FFF;font-size: 11px;border: 0px;" class="btn dropdown-toggle" data-toggle="dropdown" href="#">    									
+    									<i class="icon-share"></i>
+    									Paylaş
+  									</a>
+  									<ul class="dropdown-menu share"> 										
+   										<span style="font-size:11px">Aşağıdaki linki kopyalayıp paylaşabilirsiniz.</span><br>
+   										<input style="width: 240px;" type="text" value="http://www.serbestsandik.com/${_.id}/0" />
+  									</ul>
+								</div>
 	        		 		</div>
 	        		 		
 	        		 		<div style="float:right">
@@ -166,13 +177,12 @@
                             </div>
 							<div style="float:right;position:relative;">
 							    <form style="margin-bottom:10px;" method="POST" action="@{Application.upvoteStatement}">
-		        		 			<input  type="hidden" name="id" value="${_.id}">  
-		        		 			<button type="submit" class="upvoteButton">		        		 				
-		        		 				<span class="vote-small"></span>
+		        		 			<input  type="hidden" name="id" value="${_.id}">
+		        		 			<span class="vote-small"></span>  
+		        		 			<button type="submit" class="upvoteButton">		        		 						        		 				
 		        		 				Yukarı Taşı
 		        		 			</button>
-		        		 			<span style="font-size:11px;font-weight:bold;margin-top:2px;color:gray">(${_.point})</span>	        		 			     		 		
-		        		 			
+		        		 			<span style="font-size:11px;font-weight:bold;margin-top:2px;color:gray">(${_.point})</span>	        		 			     		 				        		 			
 	        		 			</form>   
 							</div>
 							</div>
@@ -200,7 +210,7 @@
 						
 						<div style="clear:both;margin-bottom:5px">														
 							<div style="float:left;margin-right:10px;margin-bottom:5px">							
-								<div style="line-height:16px !important;margin:2px 0 5px 0;width:540px;height:auto;">
+								<div style="line-height:16px !important;margin:2px 0 5px 0;width:600px;height:auto;">
 									<span style="font-size:11px;color:gray">${_.st_text.raw()}</span>
 								</div>
 							</div>
@@ -208,7 +218,7 @@
 							<div class="clearfix"></div>
 							
 							<div style="float:left;">
-								<a href="/${_.id}/1">
+								<a href="/${_.id}/1" style="margin-right:10px">
 									<span class="katil-el-small"></span>
 									<span style="font-size:11px;color:green;margin-left:-5px">Katılanları gör</span><span style="margin-left:3px;font-size:11px;color:black">(${_.positiveChild.size()})</span>
 								</a>
@@ -229,9 +239,9 @@
                             </div>
 							<div style="float:right;position:relative;">
 							    <form style="margin-bottom:10px;" method="POST" action="@{Application.upvoteStatement}">
-		        		 			<input  type="hidden" name="id" value="${_.id}">  
-		        		 			<button type="submit" class="upvoteButton">		        		 				
-		        		 				<span class="vote-small"></span>
+		        		 			<input  type="hidden" name="id" value="${_.id}">
+		        		 			<span class="vote-small"></span>  
+		        		 			<button type="submit" class="upvoteButton">		        		 						        		 				
 		        		 				Yukarı Taşı
 		        		 			</button>
 		        		 			<span style="font-size:11px;font-weight:bold;margin-top:2px;color:gray">(${_.point})</span>	        		 			     		 		

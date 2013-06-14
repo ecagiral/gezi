@@ -38,4 +38,18 @@ $(document).ready(function() {
 	});
 	
 	
+//	$('html').click(function(event) {
+//		if ($('.share').has(event.target).length == 0)
+//		{ 
+//			e.stopPropagation();
+//						
+//		}
+//		}); 
+	
+	
+	
+	$('.share').bind('click', function (e) {
+			e.stopPropagation();			 
+	});
+	
 });
